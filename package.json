@@ -1,0 +1,30 @@
+{
+  "name": "record",
+  "version": "1.0.0",
+  "description": "Nuxt.js project",
+  "author": "Anju Cheran <anjucheran.15@cse.mrt.ac.lk>",
+  "private": true,
+  "scripts": {
+    "dev": "HOST=0.0.0.0 PORT=3000 nuxt",
+    "build": "nuxt build",
+    "start": "HOST=0.0.0.0 PORT=3000 nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "nuxt": "^1.0.0",
+    "socket.io-stream": "^0.9.1",
+    "vue-socket.io": "^2.1.1-b"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.15.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-vue": "^4.0.0",
+    "node-sass": "^4.9.2",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.21.0"
+  }
+}
