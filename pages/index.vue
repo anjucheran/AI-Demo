@@ -22,6 +22,7 @@ import Header from "~/components/Header.vue";
 import Logo from "~/components/Logo.vue";
 import LeftMessage from "~/components/LeftMessage.vue";
 import RightMessage from "~/components/RightMessage.vue";
+import { CHAT } from '~/config';
 
 import ss from 'socket.io-stream';
 
@@ -114,6 +115,16 @@ export default {
     },
     scroll() {
       document.getElementById('cont').scrollTop = document.getElementById('cont').scrollHeight;
+    },
+    async getResponse(msg) {
+      console.log(msg);
+      const { data } = await this.$axios.get(CHAT, {
+        params: {
+          q: msg
+        }
+      });
+      console.log(data.answer);
+      return data.answer;
     }
   },
   sockets: {
@@ -135,7 +146,7 @@ export default {
       let msg = text;
       this.messages.push({ type: 'right', text: msg });
     },
-    final: function(text) {
+    final: async function(text) {
       this.stream.getTracks().forEach(track => {
         track.stop();
       });
@@ -144,6 +155,8 @@ export default {
       ssStream = ss.createStream();
       this.recording = false;
       audioContext = null;
+      const answer = await this.getResponse(text);
+      this.messages.push({ type: 'left', text: answer });
     }
   }
 };
